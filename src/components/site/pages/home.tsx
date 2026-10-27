@@ -37,8 +37,10 @@ export function HomePage() {
               <span aria-hidden="true">·</span>
               <span className="opacity-80">Открытый каталог · Свободный просмотр</span>
             </div>
-            <h1 className="font-display text-[clamp(2.4rem,5.4vw,4.8rem)] uppercase leading-[0.92] tracking-[-0.005em] [text-wrap:balance]">
-              Шаблон магазина
+            <h1 className="font-display text-[clamp(2.4rem,5.4vw,4.8rem)] uppercase leading-[0.92] tracking-[-0.005em]">
+              Шаблон
+              <br />
+              магазина
             </h1>
             <p className="max-w-[58ch] text-[1.0625rem] font-semibold leading-snug">
               Структурное демо — ничего реального, ничего выдуманного.
