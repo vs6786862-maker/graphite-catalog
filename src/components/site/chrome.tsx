@@ -1,12 +1,14 @@
 "use client";
 
-import { useState, useSyncExternalStore } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import {
   IconSearch,
   IconShoppingBag,
   IconMenu,
   IconArrowRight,
   IconX,
+  IconSun,
+  IconMoon,
 } from "./bits";
 import {
   subscribeCart,
@@ -89,6 +91,7 @@ export function Header() {
             >
               Регистрация
             </a>
+            <ThemeToggle />
             <a
               href="#/cart"
               aria-label="Открыть корзину"
@@ -104,6 +107,7 @@ export function Header() {
           </div>
 
           <div className="flex items-center gap-1 md:hidden">
+            <ThemeToggle />
             <button
               type="button"
               aria-label="Открыть меню"
@@ -174,6 +178,45 @@ export function Header() {
         </div>
       ) : null}
     </header>
+  );
+}
+
+/* ---------- theme toggle (как на референсе: иконка показывает целевую тему) ---------- */
+
+type ThemeName = "dark" | "light";
+
+const themeStore = {
+  listeners: new Set<() => void>(),
+  get(): ThemeName {
+    return document.documentElement.dataset.theme === "light" ? "light" : "dark";
+  },
+  set(next: ThemeName) {
+    document.documentElement.dataset.theme = next;
+    try {
+      localStorage.setItem("theme", next);
+    } catch {}
+    themeStore.listeners.forEach((l) => l());
+  },
+  subscribe(l: () => void) {
+    themeStore.listeners.add(l);
+    return () => {
+      themeStore.listeners.delete(l);
+    };
+  },
+};
+
+function ThemeToggle() {
+  const theme = useSyncExternalStore(themeStore.subscribe, themeStore.get, () => "dark" as const);
+  return (
+    <button
+      type="button"
+      onClick={() => themeStore.set(theme === "dark" ? "light" : "dark")}
+      aria-label={theme === "dark" ? "Переключить на светлую тему" : "Переключить на тёмную тему"}
+      title={theme === "dark" ? "Светлая тема" : "Тёмная тема"}
+      className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-[var(--radius)] text-ink-foreground transition-colors hover:bg-ink-foreground/10"
+    >
+      {theme === "dark" ? <IconSun className="h-4 w-4" /> : <IconMoon className="h-4 w-4" />}
+    </button>
   );
 }
 

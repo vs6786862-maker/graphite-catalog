@@ -13,15 +13,17 @@
 - Корзина на localStorage: изменение количества, итог заказа, демо-оформление
 - Разделы: линеек, серий, категорий, заявок, услуг, добавления товара, входа
 - Тёмная тема в 3 цвета: чёрный фон, светло-серый текст, синий акцент #006bb9
-- Типографика: Golos Text (осн. текст) + Martian Mono (CAPS-подписи), вес 800
-  на дисплейных элементах
+- Типографика как на референсе: Archivo (латиница/цифры) + Azeret Mono (CAPS-подписи);
+  кириллица — Roboto Flex Expanded (дисплей), Golos Text (текст), Martian Mono (моно);
+  вес 800 и ширина wdth 125 на дисплейных элементах
+- Светлая и тёмная темы с переключателем в шапке (выбор хранится в localStorage)
 
 ## Стек
 
 - [Next.js 16](https://nextjs.org) (App Router, Turbopack) + React 19 + TypeScript
 - [Tailwind CSS 4](https://tailwindcss.com) с семантическими дизайн-токенами
 - Компоненты [shadcn/ui](https://ui.shadcn.com) в `src/components/ui`
-- Шрифты `@fontsource-variable` (Golos Text, Martian Mono)
+- Шрифты `@fontsource-variable` (Archivo, Roboto Flex, Azeret Mono, Golos Text, Martian Mono)
 
 ## Запуск для разработки
 
